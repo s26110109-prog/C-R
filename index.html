@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pen</title>
-  </head>
-  <body>
-
-    <script src="./script.js"></script>
-  </body>
-</html>
-<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -235,7 +222,7 @@
                 <i class="fa-solid fa-map text-pink-500 text-xl animate-bounce"></i>
                 <h3 class="text-xl font-bold tracking-wider text-cyan-300">關卡選擇 (STAGE SELECT)</h3>
             </div>
-            <span class="text-xs text-gray-400 font-mono">Progress: <span class="text-yellow-400 font-bold">3</span> / 16 CLEARED</span>
+            <span class="text-xs text-gray-400 font-mono">Progress: <span class="text-yellow-400 font-bold">4</span> / 16 CLEARED</span>
         </div>
 
         <!-- 16 Stage Grid Container -->
@@ -281,22 +268,42 @@
                 </div>
             </a>
 
-            <!-- STAGE 03: Newly Unlocked (迷因產生器) -->
-            <a href="w3/index.html" class="quest-card unlocked shine-effect group relative bg-slate-900/90 border-2 border-pink-500 rounded-xl p-4 flex flex-col justify-between cyber-tile transition-all duration-300 cursor-pointer hover:border-pink-400 shadow-[0_0_15px_rgba(255,0,85,0.2)]">
+            <!-- STAGE 03: Unlocked -->
+            <a href="w3/index.html" class="quest-card unlocked shine-effect group relative bg-slate-900/90 border-2 border-purple-500 rounded-xl p-4 flex flex-col justify-between cyber-tile transition-all duration-300 cursor-pointer hover:border-purple-400">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="cyber-badge bg-purple-500 text-white font-black text-xs px-2.5 py-0.5 uppercase tracking-wider">
+                        STAGE 03
+                    </span>
+                    <span class="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 bg-emerald-950/80 text-emerald-400 border border-emerald-500/50 rounded animate-pulse">
+                        <i class="fa-solid fa-check"></i> CLEAR
+                    </span>
+                </div>
+                <div class="my-2">
+                    <h4 class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">Week 3 - 迷因產生器</h4>
+                    <p class="text-xs text-gray-400 mt-1 line-clamp-1">圖片繪製與文字合成互動工具</p>
+                </div>
+                <div class="mt-3 pt-2 border-t border-slate-800 flex justify-between items-center text-[11px] text-purple-400">
+                    <span><i class="fa-regular fa-folder-open mr-1"></i>w3/index.html</span>
+                    <span class="group-hover:translate-x-1 transition-transform">ENTER <i class="fa-solid fa-arrow-right ml-0.5"></i></span>
+                </div>
+            </a>
+
+            <!-- STAGE 04: Newly Unlocked (悄悄畫) -->
+            <a href="w4/index.html" class="quest-card unlocked shine-effect group relative bg-slate-900/90 border-2 border-pink-500 rounded-xl p-4 flex flex-col justify-between cyber-tile transition-all duration-300 cursor-pointer hover:border-pink-400 shadow-[0_0_15px_rgba(255,0,85,0.2)]">
                 <div class="flex justify-between items-start mb-3">
                     <span class="cyber-badge bg-pink-500 text-white font-black text-xs px-2.5 py-0.5 uppercase tracking-wider">
-                        STAGE 03
+                        STAGE 04
                     </span>
                     <span class="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 bg-pink-950/80 text-pink-400 border border-pink-500/50 rounded animate-bounce">
                         <i class="fa-solid fa-fire"></i> NEW
                     </span>
                 </div>
                 <div class="my-2">
-                    <h4 class="text-lg font-bold text-white group-hover:text-pink-400 transition-colors">Week 3 - 迷因產生器</h4>
-                    <p class="text-xs text-gray-400 mt-1 line-clamp-1">圖片繪製與文字合成互動工具</p>
+                    <h4 class="text-lg font-bold text-white group-hover:text-pink-400 transition-colors">Week 4 - 悄悄畫</h4>
+                    <p class="text-xs text-gray-400 mt-1 line-clamp-1">Canvas 互動畫板與畫筆功能實作</p>
                 </div>
                 <div class="mt-3 pt-2 border-t border-slate-800 flex justify-between items-center text-[11px] text-pink-400">
-                    <span><i class="fa-regular fa-folder-open mr-1"></i>w3/index.html</span>
+                    <span><i class="fa-regular fa-folder-open mr-1"></i>w4/index.html</span>
                     <span class="group-hover:translate-x-1 transition-transform">ENTER <i class="fa-solid fa-arrow-right ml-0.5"></i></span>
                 </div>
             </a>
@@ -317,9 +324,8 @@
     </div>
 
     <script>
-        // Data for locked stages (Week 4 ~ Week 16)
+        // Data for locked stages (Week 5 ~ Week 16)
         const lockedStages = [
-            { week: 4, title: "Week 4 - JavaScript 魔法", boss: "DOM 操作怪" },
             { week: 5, title: "Week 5 - API 資料召喚", boss: "Fetch 遠古巨龍" },
             { week: 6, title: "Week 6 - 動畫與特效", boss: "Keyframe 影武者" },
             { week: 7, title: "Week 7 - 期中冒險實作", boss: "Midterm Mini Boss" },

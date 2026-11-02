@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen</title>
+  </head>
+  <body>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今天吃什麼？隨機抽籤機</title>
+    <style>
+        /* --- 整體背景與通用設定 --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+
+        body {
+            background-color: #FFF9E6; /* 溫和暖黃背景 */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- 主卡片容器 --- */
+        .card {
+            background-color: #FFFFFF;
+            border: 4px solid #FFBE0B; /* 明亮黃色邊框 */
+            border-radius: 24px;
+            box-shadow: 0 12px 24px rgba(255, 154, 60, 0.2);
+            padding: 40px 30px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* --- 標題區域 --- */
+        .title-container {
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #food-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FF8800; /* 活力橘色 */
+            word-break: break-all;
+        }
+
+        /* 跳動動畫效果 */
+        .bounce {
+            animation: bounceAnim 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes bounceAnim {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.15); }
+            70% { transform: scale(0.95); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- 美食照片顯示區 --- */
+        .image-container {
+            width: 100%;
+            height: 220px;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #FFF3CD;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #FFAB00;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- 抽籤按鈕 --- */
+        .btn-draw {
+            background: linear-gradient(135deg, #FFBE0B, #FF9F1C);
+            color: #FFFFFF;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(255, 159, 28, 0.3);
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-draw:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 159, 28, 0.4);
+        }
+
+        .btn-draw:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(255, 159, 28, 0.3);
+        }
+
+        /* --- Google Maps 馬上出發按鈕 --- */
+        .btn-map {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #FF5722; /* 鮮豔橘紅按鈕 */
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 12px 30px;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+            transition: all 0.2s ease;
+            opacity: 0.5;
+            pointer-events: none; /* 抽籤前停用點擊 */
+        }
+
+        .btn-map.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .btn-map:hover {
+            background-color: #E64A19;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- 大標題區 -->
+        <div class="title-container">
+            <h1 id="food-title">今天吃什麼？</h1>
+        </div>
+
+        <!-- 食物照片展示區 -->
+        <div class="image-container">
+            <img id="food-img" src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&q=80" alt="預設食物照片">
+        </div>
+
+        <!-- 抽籤按鈕 -->
+        <button class="btn-draw" id="draw-btn">點我抽籤 🎲</button>
+
+        <!-- Google Maps 導航按鈕 -->
+        <a id="map-btn" class="btn-map" href="#" target="_blank">
+            🚀 馬上出發找美食
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 食物選單資料庫
+            const foodList = [
+                {
+                    name: "排骨飯 🍱",
+                    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
+                    keyword: "排骨飯"
+                },
+                {
+                    name: "水餃 🥟",
+                    image: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=500&q=80",
+                    keyword: "水餃"
+                },
+                {
+                    name: "麥當勞 🍔",
+                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80",
+                    keyword: "麥當勞"
+                },
+                {
+                    name: "義大利麵 🍝",
+                    image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=500&q=80",
+                    keyword: "義大利麵"
+                },
+                {
+                    name: "便利商店 🏪",
+                    image: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=500&q=80",
+                    keyword: "便利商店"
+                }
+            ];
+
+            // 2. 獲取 HTML 元素
+            const title = document.getElementById("food-title");
+            const img = document.getElementById("food-img");
+            const mapBtn = document.getElementById("map-btn");
+            const drawBtn = document.getElementById("draw-btn");
+
+            let isRolling = false;
+
+            // 3. 抽籤邏輯
+            function drawFood() {
+                if (isRolling) return;
+                isRolling = true;
+
+                drawBtn.innerText = "抽取中...";
+
+                // 快速輪播效果（增加期待感）
+                let counter = 0;
+                const timer = setInterval(() => {
+                    const randomTemp = foodList[Math.floor(Math.random() * foodList.length)];
+                    title.innerText = randomTemp.name;
+                    counter++;
+
+                    if (counter > 10) {
+                        clearInterval(timer);
+
+                        // 隨機選出最終結果
+                        const finalResult = foodList[Math.floor(Math.random() * foodList.length)];
+
+                        // 更新標題並觸發跳動動畫
+                        title.innerText = finalResult.name;
+                        title.classList.remove("bounce");
+                        void title.offsetWidth; // 強制重置 CSS 動畫
+                        title.classList.add("bounce");
+
+                        // 更新圖片與 Google Maps 連結
+                        img.src = finalResult.image;
+                        const mapUrl = `https://www.google.com/maps/search/${encodeURIComponent(finalResult.keyword)}`;
+                        mapBtn.href = mapUrl;
+                        mapBtn.classList.add("active");
+
+                        drawBtn.innerText = "再抽一次 🎲";
+                        isRolling = false;
+                    }
+                }, 80);
+            }
+
+            // 4. 綁定按鈕點擊事件
+            drawBtn.addEventListener('click', drawFood);
+        });
+    </script>
+</body>
+</html>

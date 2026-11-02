@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen</title>
+  </head>
+  <body>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>櫻桃 Cherry | 個人數位名片</title>
+    <!-- 載入 Font Awesome 圖示庫（提供 IG 和 Email 圖示） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* 
+          ==============================================
+          🌸 馬卡龍個人數位名片完整 CSS 樣式
+          ==============================================
+        */
+
+        /* 1. 全局重置與預設字型 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'PingFang TC', 'Microsoft JhengHei', -apple-system, sans-serif;
+        }
+
+        /* 2. 全頁背景：馬卡龍夢幻漸層色，並將名片完全置中 */
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center; /* 水平置中 */
+            align-items: center;     /* 垂直置中 */
+            background: linear-gradient(135deg, #fff0f5 0%, #e6e6fa 50%, #f0f8ff 100%);
+            padding: 20px;
+        }
+
+        /* 3. 名片主卡片：半透明白色玻璃質感 + 馬卡龍柔和微陰影 */
+        .card-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            width: 100%;
+            max-width: 350px;
+            padding: 36px 28px;
+            border-radius: 32px; /* 圓潤現代感大圓角 */
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(244, 114, 182, 0.12),
+                        0 8px 16px rgba(167, 139, 250, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        /* 懸浮 hover 效果：微浮起感 */
+        .card-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 48px rgba(244, 114, 182, 0.18),
+                        0 12px 24px rgba(167, 139, 250, 0.12);
+        }
+
+        /* 4. 圓形大頭貼照片與粉紅光暈 */
+        .profile-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%; /* 剪裁成完美圓形 */
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* 5. 名字樣式 */
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a4e69; /* 深奶茶灰，比起純黑更具質感 */
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+
+        /* 6. 簡短自我介紹樣式 */
+        .profile-bio {
+            font-size: 0.9rem;
+            color: #8d99ae;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        /* 7. 按鈕群組排列 */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 按鈕基礎樣式 */
+        .btn {
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 13px 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        /* 8. Instagram 馬卡龍粉橘按鈕 */
+        .btn-instagram {
+            background: linear-gradient(135deg, #ffb3ba 0%, #ffdfba 100%);
+            color: #6d4c41;
+            box-shadow: 0 6px 15px rgba(255, 179, 186, 0.4);
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 179, 186, 0.6);
+            opacity: 0.95;
+        }
+
+        /* 9. Email 馬卡龍粉藍紫按鈕 */
+        .btn-email {
+            background: linear-gradient(135deg, #bae1ff 0%, #e8dff5 100%);
+            color: #4a4e69;
+            box-shadow: 0 6px 15px rgba(186, 225, 255, 0.5);
+        }
+
+        .btn-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(186, 225, 255, 0.7);
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 全頁置中名片容器 -->
+    <main class="card-container">
+        
+        <!-- 1. 圓形大頭貼照片（可替換 src 裡面的網址） -->
+        <img src=https://i.postimg.cc/QtdtPX52/26110109.jpg
+             alt="大頭貼" 
+             class="profile-avatar">
+
+        <!-- 2. 名字與簡短自我介紹 -->
+        <h1 class="profile-name">林小桃 Cherry Lin</h1>
+        <p class="profile-bio">🎨 UI/UX 設計師 | 探索生活中的美好色彩</p>
+
+        <!-- 3. 下方兩個按鈕區 (Instagram 與 Email) -->
+        <div class="button-group">
+            <!-- Instagram 按鈕 -->
+            <a href="https://instagram.com" target="_blank" class="btn btn-instagram">
+                <i class="fab fa-instagram"></i>
+                <span>追蹤我的 Instagram</span>
+            </a>
+            
